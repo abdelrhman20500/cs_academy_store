@@ -21,6 +21,7 @@ class LoginCubit extends Cubit<LoginState>{
       if(response.statusCode == 200){
         /// save token ......
         SharedPref.saveToken(response.data["accessToken"]);
+        print(response.data["accessToken"]);
         emit(LoginSuccess());
       }else{
         emit(LoginFailure(error: "Please Try again"));

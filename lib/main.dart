@@ -1,5 +1,6 @@
-import 'package:cs_academy_store/Features/home/presentation/view/home_view.dart';
+import 'package:cs_academy_store/Core/Routing/app_route.dart';
 import 'package:flutter/material.dart';
+import 'Core/Routing/routes.dart';
 import 'Core/Utilis/shared_preferences.dart';
 
 void main() async{
@@ -15,9 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final token = SharedPref.getToken();
+    final isLoggedIn = token != null && token.isNotEmpty;
+    return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      initialRoute: isLoggedIn ? Routes.homeView : Routes.loginView,
+      onGenerateRoute: AppRouter().generateRoute,
     );
   }
 }

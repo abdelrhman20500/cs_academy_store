@@ -6,6 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../Core/Routing/routes.dart';
+
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
@@ -29,6 +31,7 @@ class LoginView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Login Success"),
                   backgroundColor: Colors.green,),);
+              Navigator.pushReplacementNamed(context, Routes.homeView);
             } else if (state is LoginFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error),
